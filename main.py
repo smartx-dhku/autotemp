@@ -6,13 +6,18 @@ class Temperature:
         self._session = ZeusSession()
 
     def save(self):
+        from random import randint
         VALUE_MIN = 0.0
         VALUE_MAX = 37.5
 
-        value = input('>>> Input your temperature (\'C): ')
-        value = float(value)
-        if value < VALUE_MIN or value >= VALUE_MAX:
-            raise Exception(f'Invalid value: {value}')
+        #value = input('>>> Input your temperature (\'C): ')
+        #value = float(value)
+        #if value < VALUE_MIN or value >= VALUE_MAX:
+        #    raise Exception(f'Invalid value: {value}')
+        while True:
+            value = 36.0 + randint(0,1) + 0.1 * randint(0,9)
+            if value <= VALUE_MAX: break
+
 
         self._session.save(
             path='/amc/amcDailyTempRegE/save.do',
